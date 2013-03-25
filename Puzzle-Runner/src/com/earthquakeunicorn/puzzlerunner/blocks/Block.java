@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.earthquakeunicorn.puzzlerunner.Entity;
 
+//Base block class
 public class Block extends Entity
 {
 	public Block(Texture text, Rectangle rect)
