@@ -1,0 +1,30 @@
+package com.earthquakeunicorn.puzzlerunner;
+
+import java.util.ArrayList;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class Level 
+{
+	public ArrayList<Entity> entitys;
+	
+	public Level()
+	{
+		entitys = new ArrayList<Entity>();
+	}
+	
+	public void addEntity(Entity entity)
+	{
+		entitys.add(entity);
+	}
+	
+	public void draw(SpriteBatch batch)
+	{
+		for(Entity cur : entitys)
+		{
+			cur.draw(batch);
+			cur.update(Gdx.graphics.getDeltaTime());
+		}
+	}
+}

@@ -1,0 +1,106 @@
+package com.earthquakeunicorn.puzzlerunner.animateobjects;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.earthquakeunicorn.puzzlerunner.GameScreen;
+import com.earthquakeunicorn.puzzlerunner.InputHandler;
+import com.earthquakeunicorn.puzzlerunner.blocks.Block;
+
+public class Player extends AnimateObject 
+{	
+	Vector2 pos;
+	int speed = 3;
+	double gravity = 0.2;
+	double momentum = 0;
+	int jumpSpeed = 6;
+	
+	public Player(Texture t, Rectangle r, int col, int rows) 
+	{
+		super(t, r);
+	}
+	
+	@Override
+	public void update(float delta)
+	{
+		super.update(delta);
+		
+		tryMove(new Vector2(0, (int)momentum));
+		
+		if(InputHandler.right())
+			tryMove(new Vector2(speed,0));
+		
+		else if(InputHandler.left())
+			tryMove(new Vector2(-speed,0));
+		
+		if(InputHandler.jump())
+		{
+			if(momentum == 0)
+			{
+				momentum = jumpSpeed;
+			}
+		}
+		
+		if(momentum > -4)
+		{
+			momentum -= gravity;
+		}
+		
+	}
+	
+	@Override
+	public void draw(SpriteBatch batch)
+	{
+		super.draw(batch);
+	}
+
+	
+	public void tryMove(Vector2 vec)
+	{
+		float prevX = rect.x;
+		float prevY = rect.y;
+		
+		move(new Vector2(rect.x + vec.x, rect.y + vec.y));
+		
+		for(Block cur : GameScreen.level.blocks)
+		{
+			if(vec.x > 0)
+			{
+				if(this.isOnLeftOf(cur))
+				{
+					move(new Vector2(prevX,prevY));
+					break;
+				}
+			}
+			
+			else if(vec.x < 0)
+			{
+				if(this.isOnRightOf(cur))
+				{
+					move(new Vector2(prevX,prevY));
+					break;
+				}
+			}
+			
+			else if(vec.y > 0)
+			{
+				if(this.isOnBottomOf(cur))
+				{
+					move(new Vector2(prevX,prevY));
+					break;
+				}
+			}
+			
+			else if(vec.y < 0)
+			{
+				if(this.isOnTopOf(cur))
+				{
+					move(new Vector2(prevX,prevY));
+					momentum = 0;
+					break;
+				}
+			}
+		}
+	}
+}

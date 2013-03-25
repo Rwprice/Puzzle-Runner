@@ -1,0 +1,5 @@
+package com.earthquakeunicorn.puzzlerunner.blocks;
+
+public class WinBlock extends Block {
+
+}

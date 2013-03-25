@@ -1,0 +1,29 @@
+package com.earthquakeunicorn.puzzlerunner;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+public class HUD 
+{
+	private Texture arrowTex;
+	private Sprite arrowSprite;
+	
+	public HUD()
+	{
+		arrowTex = new Texture(Gdx.files.internal("textures/arrows.png"));
+		arrowSprite = new Sprite(arrowTex);
+	}
+	
+	public void update(OrthographicCamera camera)
+	{
+		arrowSprite.setBounds(camera.position.x - camera.viewportWidth/2, camera.position.y - camera.viewportHeight/2, 300, 80);
+	}
+	
+	public void draw(SpriteBatch batch)
+	{
+		arrowSprite.draw(batch);
+	}
+}
