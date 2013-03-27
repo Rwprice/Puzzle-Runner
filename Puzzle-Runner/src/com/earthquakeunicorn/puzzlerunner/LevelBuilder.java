@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.earthquakeunicorn.puzzlerunner.animateobjects.Enemy;
 import com.earthquakeunicorn.puzzlerunner.animateobjects.Player;
 import com.earthquakeunicorn.puzzlerunner.blocks.Block;
 import com.earthquakeunicorn.puzzlerunner.blocks.BreakableBlock;
@@ -40,6 +41,8 @@ public class LevelBuilder
 					level.addBlock(new TeleportBlock(new Texture(Gdx.files.internal("textures/spike.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
 				else if(curLine.charAt(j) == '|')
 					level.addBlock(new BreakableBlock(new Texture(Gdx.files.internal("textures/block.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
+				else if(curLine.charAt(j) == '?')
+					level.addEnemy(new Enemy(new Texture(Gdx.files.internal("textures/block.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32), 0, 0));
 			}
 		}
 		
