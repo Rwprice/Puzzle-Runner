@@ -63,5 +63,7 @@ public class Level
 		player.reset();
 		for(Block cur : blocks)
 			cur.reset();
+		for(Enemy cur : enemies)
+			cur.reset();
 	}
 }

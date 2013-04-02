@@ -146,6 +146,21 @@ public class Player extends AnimateObject
 						break;
 					}
 				}
+				
+				//Check to hit enemies
+				Iterator<Enemy> iter3 = GameScreen.level.enemies.iterator();
+				while(iter3.hasNext()) 
+				{
+					Object cur = iter3.next();
+					
+					if(bullet.rect.overlaps(((Enemy)cur).rect) && ((Enemy)cur).isAlive)
+					{
+						((Enemy)cur).life--;
+						
+						iter.remove();
+						break;
+					}
+				}
 			}
 		}
 	}
