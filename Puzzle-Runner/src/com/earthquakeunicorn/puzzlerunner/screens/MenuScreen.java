@@ -47,10 +47,10 @@ public class MenuScreen implements Screen
 	}
 
 	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
+	public void resize(int width, int height) 
+	{
 		
-	}
+    }
 
 	@Override
 	public void show() {

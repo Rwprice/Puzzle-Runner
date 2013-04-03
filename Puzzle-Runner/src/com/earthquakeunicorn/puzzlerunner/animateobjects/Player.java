@@ -6,9 +6,12 @@ import java.util.Iterator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.earthquakeunicorn.puzzlerunner.InputHandler;
 import com.earthquakeunicorn.puzzlerunner.blocks.Block;
@@ -38,6 +41,8 @@ public class Player extends AnimateObject
 	private double momentum = 0;
 	
 	private Texture bulletTex;
+	private ParticleEffect deathEffect;
+	private Array<ParticleEmitter> deathEffectEmitters;
 	
 	public Player(Texture t, Rectangle r, int col, int rows) 
 	{
@@ -45,6 +50,9 @@ public class Player extends AnimateObject
 		bullets = new ArrayList<Bullet>();
 		bulletTex = new Texture(Gdx.files.internal("textures/Bullet.png"));
 		initialPosition = new Vector2(r.x, r.y);
+		deathEffect = new ParticleEffect();
+		deathEffect.load(Gdx.files.internal("particles/death.p"),Gdx.files.internal("particles"));
+		deathEffectEmitters = new Array<ParticleEmitter>(deathEffect.getEmitters());
 	}
 	
 	@Override
@@ -52,7 +60,9 @@ public class Player extends AnimateObject
 	{
 		super.update(delta);
 		
-		if(rect.y < -200)
+		deathEffect.setPosition(rect.x + rect.width/2, rect.y + rect.height/2);
+		
+		if(rect.y < -250)
 			isAlive = false;
 		
 		if(rect.x + 400 <= camera.position.x)
@@ -163,6 +173,9 @@ public class Player extends AnimateObject
 				}
 			}
 		}
+		
+		if(!isAlive)
+			deathEffectEmitters.get(0).start();
 	}
 	
 	@Override
@@ -170,7 +183,10 @@ public class Player extends AnimateObject
 	{
 		for(Bullet cur : bullets)
 			cur.draw(batch);
-		super.draw(batch);
+		
+		deathEffect.draw(batch, Gdx.graphics.getDeltaTime());
+		if(isAlive)
+			super.draw(batch);
 	}
 	
 	public void tryMove(Vector2 vec)
