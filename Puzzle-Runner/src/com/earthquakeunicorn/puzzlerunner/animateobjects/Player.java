@@ -88,7 +88,7 @@ public class Player extends AnimateObject
 		{
 			Bullet temp = new Bullet(bulletTex, new Rectangle(rect.x + rect.width/2, rect.y + rect.height/2, 8, 8));
 			temp.fire(new Vector2(temp.rect.x, temp.rect.y), 
-					  new Vector2(GameScreen.camera.position.x - GameScreen.camera.viewportWidth / 2 + InputHandler.coords.x, GameScreen.camera.position.y + GameScreen.camera.viewportHeight/2 - InputHandler.coords.y));
+					  new Vector2(InputHandler.coords.x, InputHandler.coords.y));
 			bullets.add(temp);
 			lastBulletFire = TimeUtils.nanoTime();
 		}

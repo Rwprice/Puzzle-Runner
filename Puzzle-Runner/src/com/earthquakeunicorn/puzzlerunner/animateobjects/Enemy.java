@@ -1,7 +1,5 @@
 package com.earthquakeunicorn.puzzlerunner.animateobjects;
 
-import aurelienribon.tweenengine.Tween;
-
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

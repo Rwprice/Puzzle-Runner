@@ -2,16 +2,23 @@ package com.earthquakeunicorn.puzzlerunner;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.earthquakeunicorn.puzzlerunner.screens.GameScreen;
 
 public class InputHandler 
 {	
 	public static boolean right, left, jump, reset, back, menu;
-	public static Vector2 coords;
+	public static Vector3 coords;
 	private static float lastBackRead = 0;
 	private static float lastMenuRead = 0;
+	private static float scale;
 	
+	public static void setScale(float s)
+	{
+		scale = s;
+		System.out.println(scale);
+	}
 	
 	public static void handleGameInput()
 	{
@@ -22,7 +29,7 @@ public class InputHandler
 		back = false;
 		menu = false;
 		
-		coords = new Vector2();
+		coords = new Vector3();
 		
 		if(Gdx.input.isKeyPressed(Keys.D))
 			right = true;
@@ -52,25 +59,31 @@ public class InputHandler
 		{
 			if(Gdx.input.isTouched(i))
 			{
+				
 				int x = Gdx.input.getX(i);
 				int y = Gdx.input.getY(i);
 				
-				if(x > 150 && y > 400 && x < 300)
+				System.out.println(x + "  " + y);
+				
+				if(x > 150 * scale && y > 400 * scale && x < 300 * scale)
 					right = true;
 				
-				else if(x < 150 && y > 400)
+				else if(x < 150 * scale && y > 400 * scale)
 					left = true;
 				
-				else if(x > 650 && y > 400)
+				else if(x > 650 * scale && y > 400 * scale)
 					jump = true;
 				
-				else if(x < 80 && y < 80)
+				else if(x < 80 * scale && y < 80 * scale)
 					reset = true;
 				
 				else 
 				{
 					coords.x = x;
 					coords.y = y;
+					coords.z = 0;
+					
+					GameScreen.camera.unproject(coords);
 				}
 			}
 		}
@@ -78,7 +91,7 @@ public class InputHandler
 	
 	public static void handleMenuInput()
 	{
-		coords = new Vector2();
+		coords = new Vector3();
 		back = false;
 		left = false;
 		right = false;

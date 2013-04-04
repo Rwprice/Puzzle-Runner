@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 
 public class LevelFrame extends Entity 
 {
@@ -48,7 +48,7 @@ public class LevelFrame extends Entity
 		return levelName;
 	}
 	
-	public boolean isTouched(Vector2 coords)
+	public boolean isTouched(Vector3 coords)
 	{
 		if(coords.x > rect.x && coords.x < rect.x + rect.width
 				&& 480 - coords.y > rect.y && 480 - coords.y < rect.y + rect.height)

@@ -177,6 +177,8 @@ public class GameScreen implements Screen
         float w = (float)VIRTUAL_WIDTH*scale;
         float h = (float)VIRTUAL_HEIGHT*scale;
         viewport = new Rectangle(crop.x, crop.y, w, h);
+        
+        InputHandler.setScale(scale);
     }
     
 
