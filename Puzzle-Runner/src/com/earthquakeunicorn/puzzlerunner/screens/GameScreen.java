@@ -79,7 +79,7 @@ public class GameScreen implements Screen
 				
 				camera.position.x++;
 				
-				if(camera.position.y <= 0)
+				if(level.player.rect.y + 50 <= 0)
 					camera.position.y = 0;
 				else
 					camera.position.y = level.player.rect.y + 50;
@@ -106,6 +106,7 @@ public class GameScreen implements Screen
 			case win:
 				
 				batch.setProjectionMatrix(camera.combined);
+				level.winUpdate(delta, camera);
 				
 				batch.begin();
 				level.draw(batch);

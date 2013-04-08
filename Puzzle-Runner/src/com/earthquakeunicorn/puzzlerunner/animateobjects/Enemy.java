@@ -1,10 +1,14 @@
 package com.earthquakeunicorn.puzzlerunner.animateobjects;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
+import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.earthquakeunicorn.puzzlerunner.screens.GameScreen;
 
@@ -22,16 +26,25 @@ public class Enemy extends AnimateObject
 	private float stoppedAt;
 	public int life = 5;
 	
+	private ParticleEffect deathEffect;
+	private Array<ParticleEmitter> deathEffectEmitters;
+	
 	public Enemy(Texture t, Rectangle r, int col, int rows) 
 	{
 		super(t, r);
 		initialPosition = new Vector2(r.x, r.y);
+		deathEffect = new ParticleEffect();
+		deathEffect.load(Gdx.files.internal("particles/enemyDeath.p"),Gdx.files.internal("particles"));
+		deathEffectEmitters = new Array<ParticleEmitter>(deathEffect.getEmitters());
 	}
 
 	@Override
 	public void update(float delta, Camera camera) 
 	{
 		super.update(delta);
+		
+		deathEffect.setPosition(rect.x + rect.width/2, rect.y + rect.height/2);
+		
 		if(life <= 0)
 			isAlive = false;
 		
@@ -84,10 +97,10 @@ public class Enemy extends AnimateObject
 					rect.x += momentum;
 				
 				if(rect.y > pRect.y)
-					rect.y -= 2;
+					rect.y -= 1;
 				
 				if(rect.y < pRect.y)
-					rect.y += 2;
+					rect.y += 1;
 				
 				if(momentum < maxSpeed)
 					momentum += speed;
@@ -97,16 +110,9 @@ public class Enemy extends AnimateObject
 		else if(isAlive)
 		{
 			if(rect.x < camera.position.x + camera.viewportWidth / 2)
-			{
-				isOnScreen = true;
-			}
-			
-			else if(rect.y < camera.position.y + camera.viewportHeight / 2 
-					&& rect.y > camera.position.y - camera.viewportHeight / 2)
-			{
-				isOnScreen = true;
-			}
-				
+				if(rect.y < camera.position.y + camera.viewportHeight / 2 
+						&& rect.y > camera.position.y - camera.viewportHeight / 2)
+					isOnScreen = true;
 		}
 	}
 
@@ -115,6 +121,12 @@ public class Enemy extends AnimateObject
 	{
 		if(isAlive)
 			super.draw(batch);
+		deathEffect.draw(batch, Gdx.graphics.getDeltaTime());
+	}
+	
+	public void killed()
+	{
+		deathEffectEmitters.get(0).start();
 	}
 	
 	public void reset()

@@ -1,6 +1,5 @@
 package com.earthquakeunicorn.puzzlerunner;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -45,7 +44,7 @@ public class Level extends Actor
 		for(Enemy cur : enemies)
 			cur.update(delta, camera);
 		
-		player.update(Gdx.graphics.getDeltaTime(), camera);
+		player.update(delta, camera);
 	}
 	
 	public void draw(SpriteBatch batch)
@@ -57,6 +56,12 @@ public class Level extends Actor
 			cur.draw(batch);
 		
 		player.draw(batch);
+	}
+	
+	public void winUpdate(float delta, Camera camera)
+	{
+		player.hasWon = true;
+		player.update(delta, camera);
 	}
 	
 	public void reset()

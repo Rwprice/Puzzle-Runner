@@ -17,7 +17,6 @@ public class InputHandler
 	public static void setScale(float s)
 	{
 		scale = s;
-		System.out.println(scale);
 	}
 	
 	public static void handleGameInput()
@@ -62,8 +61,6 @@ public class InputHandler
 				
 				int x = Gdx.input.getX(i);
 				int y = Gdx.input.getY(i);
-				
-				System.out.println(x + "  " + y);
 				
 				if(x > 150 * scale && y > 400 * scale && x < 300 * scale)
 					right = true;
