@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -18,6 +19,8 @@ public class GameScreen implements Screen
 	public static Level level;
 	public static OrthographicCamera camera;
 	private Rectangle viewport;
+	
+	private Texture bg;
 	
 	SpriteBatch batch;
 	PuzzleRunner game;
@@ -45,6 +48,8 @@ public class GameScreen implements Screen
 		batch = new SpriteBatch();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, VIRTUAL_WIDTH, VIRTUAL_HEIGHT);
+		
+		bg = new Texture(Gdx.files.internal("textures/cityscape.png"));
 		
 		hud = new HUD();
 		
@@ -97,6 +102,7 @@ public class GameScreen implements Screen
 				batch.setProjectionMatrix(camera.combined);
 				
 				batch.begin();
+				batch.draw(bg, camera.position.x - camera.viewportWidth/2, -250);
 				level.draw(batch);
 				hud.draw(batch, state);
 				batch.end();
@@ -109,6 +115,7 @@ public class GameScreen implements Screen
 				level.winUpdate(delta, camera);
 				
 				batch.begin();
+				batch.draw(bg, camera.position.x - camera.viewportWidth/2, -250);
 				level.draw(batch);
 				hud.draw(batch, state);
 				batch.end();
@@ -120,6 +127,7 @@ public class GameScreen implements Screen
 				batch.setProjectionMatrix(camera.combined);
 				
 				batch.begin();
+				batch.draw(bg, camera.position.x - camera.viewportWidth/2, -250);
 				level.draw(batch);
 				hud.draw(batch, state);
 				batch.end();
@@ -134,6 +142,7 @@ public class GameScreen implements Screen
 				batch.setProjectionMatrix(camera.combined);
 				
 				batch.begin();
+				batch.draw(bg, camera.position.x - camera.viewportWidth/2, -250);
 				level.draw(batch);
 				hud.draw(batch, state);
 				batch.end();
