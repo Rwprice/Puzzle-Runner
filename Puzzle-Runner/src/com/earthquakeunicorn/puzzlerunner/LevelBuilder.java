@@ -34,13 +34,13 @@ public class LevelBuilder
 				else if(curLine.charAt(j) == '@')
 					level.addPlayer(new Player(new Texture(Gdx.files.internal("textures/player.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32), 0, 0));
 				else if(curLine.charAt(j) == '&')
-					level.addBlock(new WinBlock(new Texture(Gdx.files.internal("textures/block.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
+					level.addBlock(new WinBlock(new Texture(Gdx.files.internal("textures/winblock.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
 				else if(curLine.charAt(j) == '^')
 					level.addBlock(new Spike(new Texture(Gdx.files.internal("textures/spike.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
 				else if(curLine.charAt(j) == '*')
 					level.addBlock(new TeleportBlock(new Texture(Gdx.files.internal("textures/spike.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
 				else if(curLine.charAt(j) == '|')
-					level.addBlock(new BreakableBlock(new Texture(Gdx.files.internal("textures/block.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
+					level.addBlock(new BreakableBlock(new Texture(Gdx.files.internal("textures/breakableblock.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
 				else if(curLine.charAt(j) == '?')
 					level.addEnemy(new Enemy(new Texture(Gdx.files.internal("textures/block.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32), 0, 0));
 			}
