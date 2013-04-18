@@ -38,7 +38,7 @@ public class LevelBuilder
 				else if(curLine.charAt(j) == '^')
 					level.addBlock(new Spike(new Texture(Gdx.files.internal("textures/spike.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
 				else if(curLine.charAt(j) == '*')
-					level.addBlock(new TeleportBlock(new Texture(Gdx.files.internal("textures/spike.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
+					level.addBlock(new TeleportBlock(new Texture(Gdx.files.internal("textures/teleport.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
 				else if(curLine.charAt(j) == '|')
 					level.addBlock(new BreakableBlock(new Texture(Gdx.files.internal("textures/breakableblock.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
 				else if(curLine.charAt(j) == '?')
