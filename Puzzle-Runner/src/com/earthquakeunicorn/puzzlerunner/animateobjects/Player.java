@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -62,6 +63,8 @@ public class Player extends AnimateObject
 		effect = new ParticleEffect();
 		effect.load(Gdx.files.internal("particles/teleport.p"),Gdx.files.internal("particles"));
 		effectEmitters = new Array<ParticleEmitter>(effect.getEmitters());
+		
+		currentFrame = new TextureRegion(text);
 	}
 	
 	@Override

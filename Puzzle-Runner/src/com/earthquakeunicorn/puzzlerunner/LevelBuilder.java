@@ -42,7 +42,7 @@ public class LevelBuilder
 				else if(curLine.charAt(j) == '|')
 					level.addBlock(new BreakableBlock(new Texture(Gdx.files.internal("textures/breakableblock.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32)));
 				else if(curLine.charAt(j) == '?')
-					level.addEnemy(new Enemy(new Texture(Gdx.files.internal("textures/block.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32), 0, 0));
+					level.addEnemy(new Enemy(new Texture(Gdx.files.internal("textures/enemy.png")), new Rectangle(j*32, ((tokens.length-1)-i)*32, 32, 32), 0, 0));
 			}
 		}
 		

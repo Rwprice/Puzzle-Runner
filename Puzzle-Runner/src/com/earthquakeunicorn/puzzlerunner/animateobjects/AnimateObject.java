@@ -10,9 +10,9 @@ import com.earthquakeunicorn.puzzlerunner.Entity;
 
 public class AnimateObject extends Entity 
 {	
-	private float stateTime = 0f;
-	private Animation curAnimation;
-	private TextureRegion currentFrame;
+	public float stateTime = 0f;
+	public Animation curAnimation;
+	public TextureRegion currentFrame;
 	
 	public AnimateObject(Texture t, Rectangle r) 
 	{
@@ -23,12 +23,10 @@ public class AnimateObject extends Entity
 	{
 		curAnimation = a;
 	}
-
-	@Override
-	public void draw(SpriteBatch batch) 
+	
+	public void draw(SpriteBatch batch)
 	{
-        //batch.draw(currentFrame, rect.x, rect.y); 
-		batch.draw(text, rect.x, rect.y);
+		batch.draw(currentFrame, rect.x, rect.y); 
 	}
 
 	@Override
