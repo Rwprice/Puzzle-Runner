@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.earthquakeunicorn.puzzlerunner.screens.GameScreen;
+import com.earthquakeunicorn.puzzlerunner.screens.MenuScreen;
 
 public class InputHandler 
 {	
@@ -112,6 +113,8 @@ public class InputHandler
 
 			coords.x = x;
 			coords.y = y;
+			
+			MenuScreen.camera.unproject(coords);
 		}
 	}
 }

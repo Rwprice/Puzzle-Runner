@@ -51,7 +51,7 @@ public class LevelFrame extends Entity
 	public boolean isTouched(Vector3 coords)
 	{
 		if(coords.x > rect.x && coords.x < rect.x + rect.width
-				&& 480 - coords.y > rect.y && 480 - coords.y < rect.y + rect.height)
+				&& coords.y > rect.y && coords.y < rect.y + rect.height)
 			return true;
 		else 
 			return false;
