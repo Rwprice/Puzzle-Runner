@@ -1,9 +1,9 @@
 package com.earthquakeunicorn.puzzlerunner;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
@@ -13,7 +13,7 @@ public class LevelFrame extends Entity
 	String levelName;
 	BitmapFont font;
 	
-	public LevelFrame(Texture t, Rectangle r, String path, String levelName) 
+	public LevelFrame(TextureRegion t, Rectangle r, String path, String levelName) 
 	{
 		super(t, r);
 		this.filePath = path;

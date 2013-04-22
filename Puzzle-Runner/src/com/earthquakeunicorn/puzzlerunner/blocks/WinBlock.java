@@ -1,12 +1,12 @@
 package com.earthquakeunicorn.puzzlerunner.blocks;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class WinBlock extends Block {
 
-	public WinBlock(Texture text, Rectangle rect) 
+	public WinBlock(TextureRegion text, Rectangle rect) 
 	{
 		super(text, rect);
 	}

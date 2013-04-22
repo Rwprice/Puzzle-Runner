@@ -42,7 +42,7 @@ public class Level extends Actor
 			cur.update(delta);
 		
 		for(Enemy cur : enemies)
-			cur.update(delta, camera);
+			cur.update(delta);
 		
 		player.update(delta, camera);
 	}

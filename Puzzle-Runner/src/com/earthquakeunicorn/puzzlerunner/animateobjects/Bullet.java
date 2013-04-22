@@ -1,7 +1,7 @@
 package com.earthquakeunicorn.puzzlerunner.animateobjects;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.earthquakeunicorn.puzzlerunner.Entity;
@@ -10,7 +10,7 @@ public class Bullet extends Entity
 {
 	Vector2 speed;
 	
-	public Bullet(Texture t, Rectangle r) 
+	public Bullet(TextureRegion t, Rectangle r) 
 	{
 		super(t, r);
 	}

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -76,7 +77,7 @@ public class LevelSelectScreen implements Screen
 			int columns = 0;
 			for (int j = lastIndex; j < gotoIndex; j++) 
 			{
-			   LevelFrame frame = new LevelFrame(frameTex, new Rectangle(columns * 110 + 25, rows * 110 + 25, 100, 100), dirList[j].path(), dirList[j].name());
+			   LevelFrame frame = new LevelFrame(new TextureRegion(frameTex), new Rectangle(columns * 110 + 25, rows * 110 + 25, 100, 100), dirList[j].path(), dirList[j].name());
 			   pages.get(i).levelList.add(frame);
 			   rows--;
 			   if(rows < 0)

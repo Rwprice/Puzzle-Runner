@@ -44,17 +44,17 @@ public class Player extends AnimateObject
 	
 	private float stoppedAt;
 	
-	private Texture bulletTex;
+	private TextureRegion bulletTex;
 	private ParticleEffect deathEffect;
 	private Array<ParticleEmitter> deathEffectEmitters;
 	private ParticleEffect effect;
 	private Array<ParticleEmitter> effectEmitters;
 	
-	public Player(Texture t, Rectangle r, int col, int rows) 
+	public Player(TextureRegion t, Rectangle r, int col, int rows) 
 	{
 		super(t, r);
 		bullets = new ArrayList<Bullet>();
-		bulletTex = new Texture(Gdx.files.internal("textures/Bullet.png"));
+		bulletTex = new TextureRegion(new Texture(Gdx.files.internal("textures/Bullet.png")));
 		initialPosition = new Vector2(r.x, r.y);
 		deathEffect = new ParticleEffect();
 		deathEffect.load(Gdx.files.internal("particles/playerDeath.p"),Gdx.files.internal("particles"));
@@ -64,7 +64,7 @@ public class Player extends AnimateObject
 		effect.load(Gdx.files.internal("particles/teleport.p"),Gdx.files.internal("particles"));
 		effectEmitters = new Array<ParticleEmitter>(effect.getEmitters());
 		
-		currentFrame = new TextureRegion(text);
+		state = "stand";
 	}
 	
 	@Override
@@ -89,14 +89,39 @@ public class Player extends AnimateObject
 			
 			tryMove(new Vector2(0, (int)momentum));
 			
+			if(momentum >= 1 || momentum <= -1)
+				state = "jump";
+			
+			if(state.equals("jump"))
+				if(momentum==0)
+					state = "stand";
+			
 			if(InputHandler.right)
+			{
 				tryMove(new Vector2(speed,0));
+				if(!state.equals("jump"))
+					state = "run";
+			}
 			
 			else if(InputHandler.left && !cameraPushing)
+			{
 				tryMove(new Vector2(-speed,0));
+				if(!state.equals("jump"))
+					state = "run";
+			}
 			
 			else if(cameraPushing)
+			{
 				tryMove(new Vector2(1, 0));
+				if(!state.equals("jump"))
+					state = "push";
+			}
+			
+			else
+			{
+				if(!state.equals("jump"))
+					state = "stand";
+			}
 			
 			if((InputHandler.coords.x != 0 && InputHandler.coords.y != 0) && TimeUtils.nanoTime() - lastBulletFire > 200000000f)
 			{
@@ -112,6 +137,7 @@ public class Player extends AnimateObject
 				if(momentum == 0)
 				{
 					momentum = jumpSpeed;
+					state = "jump";
 				}
 			}
 			

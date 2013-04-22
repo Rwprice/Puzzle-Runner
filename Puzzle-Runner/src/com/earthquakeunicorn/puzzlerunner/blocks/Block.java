@@ -1,14 +1,14 @@
 package com.earthquakeunicorn.puzzlerunner.blocks;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.earthquakeunicorn.puzzlerunner.Entity;
 
 //Base block class
 public class Block extends Entity
 {
-	public Block(Texture text, Rectangle rect)
+	public Block(TextureRegion text, Rectangle rect)
 	{
 		super(text, rect);
 	}

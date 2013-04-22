@@ -1,10 +1,10 @@
 package com.earthquakeunicorn.puzzlerunner.blocks;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.ParticleEmitter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
@@ -14,7 +14,7 @@ public class BreakableBlock extends Block
 	private ParticleEffect effect;
 	private Array<ParticleEmitter> effectEmitters;
 	
-	public BreakableBlock(Texture text, Rectangle rect) 
+	public BreakableBlock(TextureRegion text, Rectangle rect) 
 	{
 		super(text, rect);
 		effect = new ParticleEffect();
