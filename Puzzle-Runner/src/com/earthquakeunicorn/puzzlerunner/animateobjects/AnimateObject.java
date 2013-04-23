@@ -14,6 +14,8 @@ public class AnimateObject extends Entity
 	public TextureRegion currentFrame;
 	public TextureRegion jumpFrame;
 	public TextureRegion pushFrame;
+	public TextureRegion standFrame;
+	public TextureRegion winFrame;
 	public TextureRegion[] walkFrames;
 	public String state = "";
 	
@@ -29,8 +31,10 @@ public class AnimateObject extends Entity
 		}
 		
 		walkAnimation = new Animation(0.15f, walkFrames);
-		jumpFrame = tmp[0][5];
 		pushFrame = tmp[0][4];
+		jumpFrame = tmp[0][5];
+		standFrame = tmp[0][6];
+		winFrame = tmp[0][7];
 	}
 	
 	public void draw(SpriteBatch batch)
@@ -41,22 +45,17 @@ public class AnimateObject extends Entity
 	@Override
 	public void update(float delta) 
 	{
+		if(state.equals("win"))
+			currentFrame = winFrame;
 		
-		
-		if(state.equals("jump"))
-		{
+		else if(state.equals("jump"))
 			currentFrame = jumpFrame;
-		}
 		
 		else if(state.equals("push"))
-		{
 			currentFrame = pushFrame;
-		}
 		
 		else if(state.equals("stand"))
-		{
-			currentFrame = walkAnimation.getKeyFrame(stateTime, true);
-		}
+			currentFrame = standFrame;
 		
 		else if(state.equals("run"))
 		{

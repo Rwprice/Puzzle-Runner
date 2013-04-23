@@ -134,6 +134,7 @@ public class Player extends AnimateObject
 				temp.fire(new Vector2(temp.rect.x, temp.rect.y), 
 						  new Vector2(InputHandler.coords.x, InputHandler.coords.y));
 				bullets.add(temp);
+				temp = null;
 				lastBulletFire = TimeUtils.nanoTime();
 			}
 			
@@ -208,14 +209,14 @@ public class Player extends AnimateObject
 					Iterator<Enemy> iter3 = GameScreen.level.enemies.iterator();
 					while(iter3.hasNext()) 
 					{
-						Object cur = iter3.next();
+						Enemy cur = iter3.next();
 						
-						if(bullet.rect.overlaps(((Enemy)cur).rect) && ((Enemy)cur).isAlive)
+						if(bullet.rect.overlaps((cur).rect) && (cur).isAlive)
 						{
-							((Enemy)cur).life--;
+							cur.life--;
 							
-							if(((Enemy)cur).life <= 0)
-								((Enemy)cur).killed();
+							if(cur.life <= 0)
+								cur.killed();
 							
 							iter.remove();
 							break;
@@ -230,6 +231,8 @@ public class Player extends AnimateObject
 			//Has Won
 			
 			//play sound or something
+			
+			state = "win";
 			
 			if(stoppedAt == 0f)
 			{
@@ -247,7 +250,7 @@ public class Player extends AnimateObject
 			{
 				//BLAST OFF!
 				if(rect.y < camera.position.y + camera.viewportHeight)
-				rect.y += 10;
+					rect.y += 10;
 			}
 		}
 		
@@ -277,7 +280,8 @@ public class Player extends AnimateObject
 				if(!currentFrame.isFlipX())
 					currentFrame.flip(true, false);
 			}
-			super.draw(batch);
+			if(!beginLaunch)
+				super.draw(batch);
 		}
 	}
 	

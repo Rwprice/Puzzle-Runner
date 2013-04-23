@@ -106,10 +106,10 @@ public class LevelSelectScreen implements Screen
 		
 		if(InputHandler.back)
 			game.returnToMainMenu();
-		if(InputHandler.right)
-			curPage = 1;
-		if(InputHandler.left)
-			curPage = 0;
+		//if(InputHandler.right)
+			//curPage = 1;
+		//if(InputHandler.left)
+			//curPage = 0;
 		
 		batch.begin();
 		
