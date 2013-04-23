@@ -35,7 +35,7 @@ public class AnimateObject extends Entity
 	
 	public void draw(SpriteBatch batch)
 	{
-		batch.draw(currentFrame, rect.x, rect.y); 
+		batch.draw(currentFrame, rect.x, rect.y);
 	}
 
 	@Override

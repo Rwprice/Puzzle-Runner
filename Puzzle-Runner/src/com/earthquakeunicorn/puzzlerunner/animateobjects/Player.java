@@ -28,6 +28,7 @@ public class Player extends AnimateObject
 	private double gravity = 0.2;
 	private int jumpSpeed = 6;
 	private int maxFallSpeed = -5;
+	private int facing = 1;
 	
 	private Vector2 initialPosition;
 	
@@ -101,6 +102,8 @@ public class Player extends AnimateObject
 				tryMove(new Vector2(speed,0));
 				if(!state.equals("jump"))
 					state = "run";
+				
+				facing = 1;
 			}
 			
 			else if(InputHandler.left && !cameraPushing)
@@ -108,6 +111,8 @@ public class Player extends AnimateObject
 				tryMove(new Vector2(-speed,0));
 				if(!state.equals("jump"))
 					state = "run";
+				
+				facing = 0;
 			}
 			
 			else if(cameraPushing)
@@ -261,7 +266,19 @@ public class Player extends AnimateObject
 		effect.draw(batch, Gdx.graphics.getDeltaTime());
 		
 		if(isAlive)
+		{
+			if(facing == 1)
+			{
+				if(currentFrame.isFlipX())
+					currentFrame.flip(true, false);
+			}
+			else
+			{
+				if(!currentFrame.isFlipX())
+					currentFrame.flip(true, false);
+			}
 			super.draw(batch);
+		}
 	}
 	
 	public void tryMove(Vector2 vec)
@@ -377,6 +394,7 @@ public class Player extends AnimateObject
 		beginLaunch = false;
 		momentum = 0;
 		stoppedAt = 0;
+		facing = 1;
 		bullets.clear();
 	}
 }
