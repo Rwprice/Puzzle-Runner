@@ -71,5 +71,6 @@ public class Level extends Actor
 			cur.reset();
 		for(Enemy cur : enemies)
 			cur.reset();
+		System.out.println("Reset");
 	}
 }
