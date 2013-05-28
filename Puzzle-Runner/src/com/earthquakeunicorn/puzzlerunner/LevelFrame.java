@@ -12,6 +12,7 @@ public class LevelFrame extends Entity
 	String filePath;
 	String levelName;
 	BitmapFont font;
+	boolean locked;
 	
 	public LevelFrame(TextureRegion t, Rectangle r, String path, String levelName) 
 	{
@@ -36,6 +37,16 @@ public class LevelFrame extends Entity
 	{
 		batch.draw(text, rect.x, rect.y, rect.width, rect.height);
 		font.draw(batch, levelName,rect.x + 10, rect.y + 30);
+	}
+	
+	public boolean isLocked()
+	{
+		return locked;
+	}
+	
+	public void lock()
+	{
+		locked = true;
 	}
 	
 	public String getFilePath()

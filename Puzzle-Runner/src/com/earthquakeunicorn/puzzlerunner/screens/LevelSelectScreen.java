@@ -24,6 +24,7 @@ public class LevelSelectScreen implements Screen
 	private Rectangle viewport;
 	
 	Array<Page> pages;
+	Array<String> list;
 	
 	int curPage = 0;
 	
@@ -79,6 +80,7 @@ public class LevelSelectScreen implements Screen
 			{
 			   LevelFrame frame = new LevelFrame(new TextureRegion(frameTex), new Rectangle(columns * 110 + 25, rows * 110 + 25, 100, 100), dirList[j].path(), dirList[j].name());
 			   pages.get(i).levelList.add(frame);
+			   
 			   rows--;
 			   if(rows < 0)
 			   {
