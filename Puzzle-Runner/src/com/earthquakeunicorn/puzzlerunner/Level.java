@@ -19,6 +19,7 @@ public class Level extends Actor
 	{
 		blocks = new Array<Block>();
 		enemies = new Array<Enemy>();
+		System.out.println("Level Made");
 	}
 	
 	public void addBlock(Block block)
